@@ -1,0 +1,6 @@
+{
+    "python.unitTest.pyTestArgs": [
+        "TFBasics"
+    ],
+    "python.unitTest.pyTestEnabled": true
+}

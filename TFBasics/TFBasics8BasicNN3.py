@@ -6,7 +6,7 @@ num_of_input_units = 2
 num_of_output_units = 1
 
 x = [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]]
-y = [[1], [-1]]
+y = [[1], [1]]
 num_of_input_units = len(x[0])
 
 v_input_x = tf.placeholder(dtype=tf.float32, shape=[None, num_of_input_units])
@@ -21,7 +21,7 @@ v_output = tf.sigmoid(v_score)
 
 v_cost = tf.sqrt(tf.reduce_mean(tf.pow(tf.subtract(v_score, v_input_y), 2)))
 
-v_optimzer = tf.train.AdamOptimizer(learning_rate=0.05).minimize(v_cost)
+v_optimzer = tf.train.AdamOptimizer(learning_rate=0.005).minimize(v_cost)
 
 v_init = tf.global_variables_initializer()
 
@@ -31,10 +31,11 @@ with tf.Session() as sess:
 	print(sess.run(v_bias))
 	#output, cost = sess.run([v_output, v_cost], feed_dict={v_input_x:x, v_input_y: y})
 	cost = 0
-	for i in range(100):
+	for i in range(1000):
 		for j in range(0, len(x)):
 			xj = [x[j]]
 			yj = [y[j]]
-			_, c = sess.run([v_optimzer, v_cost], feed_dict={v_input_x: xj, v_input_y: yj})
+			out, c, _ = sess.run([v_output, v_cost, v_optimzer], feed_dict={v_input_x: xj, v_input_y: yj})
 			cost += c
+			print ">>", out
 		print(cost/len(x))

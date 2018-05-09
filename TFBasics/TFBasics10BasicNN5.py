@@ -14,7 +14,7 @@ learning_rate = 0.0001
 num_input_units = 100
 num_output_units = 10
 lst_layers_size = [num_input_units, 90, 80, 70, 60, 50, 40, 30, 20, num_output_units] #including input and output
-number_of_layers = len(lst_layers_size) - 1 #ommiting the input layer
+number_of_layers = len(lst_layers_size) - 1 #omitting the input layer
 
 dict_weights = {}
 dict_biases = {}

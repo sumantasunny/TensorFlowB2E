@@ -2,6 +2,7 @@ import tensorflow as tf
 from random import randint
 import random
 
+
 tf.set_random_seed(100)
 random.seed(100)
 
